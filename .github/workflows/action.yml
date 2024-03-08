@@ -1,0 +1,52 @@
+name: Terraform EC2 Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Authenticate with AWS
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          terraform init
+          terraform plan
+          terraform apply -auto-approve
+|
+          
+
+      - name: Build and push Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+         
+          docker build -t mynginx .
+         
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+         
+          docker tag mynginx $DOCKER_USERNAME/mynginx
+          
+          docker push $DOCKER_USERNAME/mynginx
+
+      - name: SSH into EC2 instance and deploy container
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker pull "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
+            docker run -d --restart=always -p 80:80 "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
+
