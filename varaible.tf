@@ -1,5 +1,5 @@
 /* variable "access_key" {
-        description = "Access key to AWS console"
+        description = "Access key to AWS conso2323le"
 }
 variable "secret_key" {
         description = "Secret key to AWS console"
