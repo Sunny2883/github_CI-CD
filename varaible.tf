@@ -3,7 +3,7 @@
 }
 variable "secret_key" {
         description = "Secret key to AWS console"
-}
+}12222
 */
 
 variable "instance_name" {
