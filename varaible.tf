@@ -44,3 +44,9 @@ variable "VPC_id" {
   type = string
   
 }
+
+
+variable "key-value" {
+   description = "key-value for authentication"
+   type = string
+}
