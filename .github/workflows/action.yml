@@ -46,5 +46,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker pull "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
-            docker run -d --restart=always -p 80:80 "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
+            sudo docker pull "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
+            sudo docker run -d --restart=always -p 80:80 "${{ secrets.DOCKER_USERNAME }}/mynginximage:latest"
