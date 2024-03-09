@@ -5,14 +5,14 @@ on:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout
+        uses: actions/checkout@v3
 
     
 
@@ -40,7 +40,7 @@ jobs:
       - name: SSH into EC2 instance and deploy container
         uses: appleboy/ssh-action@master
         with:
-          host: 
+          host: "52.70.88.107"
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}

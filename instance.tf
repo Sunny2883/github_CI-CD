@@ -11,7 +11,7 @@ resource "aws_instance" "git_instance" {
   instance_type               = var.instance_type
   key_name                    = aws_key_pair.key-tf.key_name
   associate_public_ip_address = true
-
+  security_groups =[aws_security_group.SecurityGroupforgit.id]
   tags = {
     Name = var.instance_name
   }
