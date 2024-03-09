@@ -1,7 +1,7 @@
-variable "AWS_SECRET_KEY_ACCESS" {
+variable "access_key" {
   description = "Access key to AWS conso2323le"
 }
-variable "AWS_SECRET_KEY_ID" {
+variable "secret_key" {
   description = "Secret key to AWS console"
 }
 
