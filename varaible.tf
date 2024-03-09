@@ -1,10 +1,10 @@
-/* variable "access_key" {
+ variable "AWS_SECRET_KEY_ACCESS" {
         description = "Access key to AWS conso2323le"
 }
-variable "secret_key" {
+variable "AWS_SECRET_KEY_ID" {
         description = "Secret key to AWS console"
-}12222
-*/
+}
+
 
 variable "instance_name" {
         description = "Name of the instance to be created"

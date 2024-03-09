@@ -1,10 +1,10 @@
-/*
+
 provider "aws" {
-    access_key = "${var.access_key}"
-    secret_key = "${var.secret_key}"
+    access_key = "${var.AWS_SECRET_KEY_ACCESS}"
+    secret_key = "${var.AWS_SECRET_KEY_ID}"
     
 }
-*/
+
 resource "aws_instance" "git_instance" {
     ami = var.ami_id
     count = var.number_of_instances
