@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ["master"]
   workflow_dispatch:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b7ff99b8eee25247e4f7590111f63f6f01b1eec
 jobs:
   deploy:
     runs-on: ubuntu-latest
