@@ -41,10 +41,11 @@ jobs:
       - name: SSH into EC2 instance and deploy container
         uses: appleboy/ssh-action@master
         with:
-          host: "44.212.58.158"
+          host: "44.202.92.11"
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             sudo docker pull "${{ secrets.DOCKER_USERNAME }}/mynginx:latest"
+            sudo docker 
             sudo docker run -d --restart=always -p 80:80 "${{ secrets.DOCKER_USERNAME }}/mynginx:latest"
