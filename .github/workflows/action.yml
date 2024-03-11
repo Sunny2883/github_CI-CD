@@ -47,4 +47,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             sudo docker pull "${{ secrets.DOCKER_USERNAME }}/mynginx:latest"
+            sudo docker 
             sudo docker run -d --restart=always -p 80:80 "${{ secrets.DOCKER_USERNAME }}/mynginx:latest"
